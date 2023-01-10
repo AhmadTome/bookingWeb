@@ -1262,3 +1262,24 @@ h6 {
 .employee-card {
   background-color: lightgrey;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+#slider-div {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+
+#slider-div>div {
+  margin: 8px;
+}
+
+.slider-label {
+  position: absolute;
+  background-color: #eee;
+  padding: 4px;
+  font-size: 0.75rem;
+}

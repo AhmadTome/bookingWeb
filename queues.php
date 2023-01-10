@@ -1,5 +1,5 @@
 <?php
-$title = 'Employee Page';
+$title = 'Queue Page';
 
 include('layout/header.php');
 ?>
@@ -7,7 +7,7 @@ include('layout/header.php');
 
         <div class="row">
             <div class="card col-12 col-sm-4 m-2 p-3 ">
-                <h3>Employee</h3>
+                <h3>Queue</h3>
 
 
                 <div class="row ">
@@ -39,7 +39,7 @@ include('layout/header.php');
                             <div class="card-body pb-1 employee-card p-2">
                                 <span class="float-start ">
                                     <span class="bi bi-person"></span>
-                                    Employee 1
+                                    Queue 1
                                 </span>
 
 
@@ -67,7 +67,7 @@ include('layout/header.php');
                             <div class="card-body pb-1 p-2 employee-card">
                                 <span class="float-start">
                                     <span class="bi bi-person"></span>
-                                    Employee 2
+                                    Queue 2
                                 </span>
 
 
@@ -93,9 +93,9 @@ include('layout/header.php');
 
 
             <div class="card col-12 col-sm-7 m-2">
-<!--                --><?php //include ('employee-options.php')?>
-                <?php include ('employee-details.php')?>
-<!--                --><?php //include ('employee-schedule.php')?>
+<!--                --><?php //include ('queue-options.php')?>
+<!--                --><?php //include ('queue-details.php')?>
+                <?php include ('queue-schedule.php')?>
             </div>
 
         </div>

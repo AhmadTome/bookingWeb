@@ -92,7 +92,8 @@ include('layout/header.php');
 
 
             <div class="card col-12 col-sm-7 m-2">
-                Service Details
+                                <?php include ('service-details.php')?>
+<!--                --><?php //include('service-options.php') ?>
             </div>
 
         </div>
