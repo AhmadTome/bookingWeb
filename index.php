@@ -1,69 +1,64 @@
-
 <?php
-    include('layout/header.php');
+include('layout/header.php');
 ?>
 <main id="main" class="main">
 
-<!--    <div class="card">-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title">Small tables</h5>-->
-<!--            <p>Add <code>.table-sm</code> to make any <code>.table</code> more compact by cutting all cell padding in half.</p>-->
-<!--            &lt;!&ndash; Small tables &ndash;&gt;-->
-<!--            <table class="table table-sm">-->
-<!--                <thead>-->
-<!--                <tr>-->
-<!--                    <th scope="col">#</th>-->
-<!--                    <th scope="col">Name</th>-->
-<!--                    <th scope="col">Position</th>-->
-<!--                    <th scope="col">Age</th>-->
-<!--                    <th scope="col">Start Date</th>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-<!--                <tr>-->
-<!--                    <th scope="row">1</th>-->
-<!--                    <td>Brandon Jacob</td>-->
-<!--                    <td>Designer</td>-->
-<!--                    <td>28</td>-->
-<!--                    <td>2016-05-25</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th scope="row">2</th>-->
-<!--                    <td>Bridie Kessler</td>-->
-<!--                    <td>Developer</td>-->
-<!--                    <td>35</td>-->
-<!--                    <td>2014-12-05</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th scope="row">3</th>-->
-<!--                    <td>Ashleigh Langosh</td>-->
-<!--                    <td>Finance</td>-->
-<!--                    <td>45</td>-->
-<!--                    <td>2011-08-12</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th scope="row">4</th>-->
-<!--                    <td>Angus Grady</td>-->
-<!--                    <td>HR</td>-->
-<!--                    <td>34</td>-->
-<!--                    <td>2012-06-11</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th scope="row">5</th>-->
-<!--                    <td>Raheem Lehner</td>-->
-<!--                    <td>Dynamic Division Officer</td>-->
-<!--                    <td>47</td>-->
-<!--                    <td>2011-04-19</td>-->
-<!--                </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--            &lt;!&ndash; End small tables &ndash;&gt;-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Bookings</h5>
+            <table class="table table-sm" id="booking_Table" style="display: none">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Service Duration</th>
+                    <th scope="col">Service Name</th>
+                    <th scope="col">Client</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Brandon Jacob</td>
+                    <td>Designer</td>
+                    <td>28</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 </main><!-- End #main -->
 
 <?php
-include ('layout/footer.html');
+include('layout/footer.html');
 ?>
+
+<script src="requestClass.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var req = new requestClass();
+
+        loadBooking();
+
+        function loadBooking() {
+            var res = req.doRequest('getUpComingBooking', 'get', {});
+            $('#booking_Table').show()
+            if(res.message){
+                $('#booking_Table>tbody').empty();
+                $('#booking_Table>tbody').append('<tr>' +
+                    '<td></td>' +
+                    '<td style="text-align: right">No Item</td>' +
+                    '<td></td>' +
+                    '<td></td>' +
+                    '</tr>');
+            }else{
+
+            }
+        }
+
+
+    })
+</script>

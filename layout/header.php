@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="csrf-token" content="8|PgmJEwh23D6WgJkMyiUXLuBIQae7tYTuSIXlJkuL">
 
     <title><?php echo $title ?? 'Dashboard'?></title>
     <meta content="" name="description">
@@ -267,19 +269,13 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="index.html">
+            <a class="nav-link " href="index.php">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
 
-        <li class="nav-item">
-            <a class="nav-link " href="index.html">
-                <i class="bi bi-calendar"></i>
-                <span>Calender</span>
-            </a>
-        </li><!-- End Calender Nav -->
 
 
         <li class="nav-item">
@@ -288,27 +284,27 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="components-alerts.html">
+                    <a href="employees.php">
                         <i class="bi bi-circle"></i><span>Manage Employees</span>
                     </a>
                 </li>
                 <li>
-                    <a href="components-accordion.html">
+                    <a href="services.php">
                         <i class="bi bi-circle"></i><span>Manage Services</span>
                     </a>
                 </li>
                 <li>
-                    <a href="components-badges.html">
+                    <a href="queues.php">
                         <i class="bi bi-circle"></i><span>Manage Queues</span>
                     </a>
                 </li>
                 <li>
-                    <a href="components-breadcrumbs.html">
+                    <a href="clients.php">
                         <i class="bi bi-circle"></i><span>Manage Client</span>
                     </a>
                 </li>
                 <li>
-                    <a href="components-buttons.html">
+                    <a href="control_queue.php">
                         <i class="bi bi-circle"></i><span>Control Queues</span>
                     </a>
                 </li>
@@ -323,42 +319,59 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="forms-elements.html">
-                        <i class="bi bi-circle"></i><span>Form Elements</span>
+                    <a href="clients.php">
+                        <i class="bi bi-circle"></i><span>Client</span>
                     </a>
                 </li>
                 <li>
-                    <a href="forms-layouts.html">
-                        <i class="bi bi-circle"></i><span>Form Layouts</span>
+                    <a href="booking_details.php">
+                        <i class="bi bi-circle"></i><span>Booking Details</span>
                     </a>
                 </li>
                 <li>
-                    <a href="forms-editors.html">
-                        <i class="bi bi-circle"></i><span>Form Editors</span>
+                    <a href="employee-reports.php">
+                        <i class="bi bi-circle"></i><span>employee reports</span>
                     </a>
                 </li>
-                <li>
-                    <a href="forms-validation.html">
-                        <i class="bi bi-circle"></i><span>Form Validation</span>
-                    </a>
-                </li>
+
             </ul>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link " href="index.html">
-                <i class="bi bi-chat"></i>
-                <span>Chat</span>
-            </a>
-        </li>
+
+
 
 
         <li class="nav-item">
-            <a class="nav-link " href="index.html">
-                <i class="bi bi-gear"></i>
-                <span>Settings</span>
+            <a class="nav-link collapsed" data-bs-target="#settings-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-house"></i><span>Settings</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
+            <ul id="settings-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="companyInformation.php">
+                        <i class="bi bi-circle"></i><span>Company Info</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="account_deleting.php">
+                        <i class="bi bi-circle"></i><span>account deleting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="company-appointment.php">
+                        <i class="bi bi-circle"></i><span>Company appointment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="employee-appointment.php">
+                        <i class="bi bi-circle"></i><span>Employee Appointment</span>
+                    </a>
+                </li>
+
+
+
+            </ul>
         </li>
+
     </ul>
 
 </aside><!-- End Sidebar-->

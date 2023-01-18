@@ -70,13 +70,13 @@
                       <h5 class="card-title pb-0 fs-4">Hello, Welcome Back</h5>
                     </div>
 
-                    <form class="row g-3 needs-validation" novalidate>
+<!--                    <form class="row g-3 needs-validation" novalidate onsubmit="return false;">-->
 
                       <div class="col-12">
-                        <label for="yourUsername" class="form-label">Username</label>
+                        <label for="email" class="form-label">Username</label>
                         <div class="input-group has-validation">
                           <span class="input-group-text" id="inputGroupPrepend">@</span>
-                          <input type="text" name="username" class="form-control" id="yourUsername" placeholder="Username or email" required>
+                          <input type="email" name="username" class="form-control" id="email" placeholder="Username or email" required>
                           <div class="invalid-feedback">Please enter your username.</div>
                         </div>
                       </div>
@@ -87,28 +87,29 @@
                         <div class="invalid-feedback">Please enter your password!</div>
                       </div>
 
-                      <div class="col-6">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                          <label class="form-check-label" for="rememberMe">Remember me</label>
-                        </div>
-                      </div>
+                    <br/>
+<!--                      <div class="col-6">-->
+<!--                        <div class="form-check">-->
+<!--                          <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">-->
+<!--                          <label class="form-check-label" for="rememberMe">Remember me</label>-->
+<!--                        </div>-->
+<!--                      </div>-->
 
-                      <div class="col-6">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" name="forgetPassword" value="true" id="forgetPassword">
-                          <label class="form-check-label" for="forgetPassword">Forget Password</label>
-                        </div>
-                      </div>
+<!--                      <div class="col-6">-->
+<!--                        <div class="form-check">-->
+<!--                          <input class="form-check-input" type="checkbox" name="forgetPassword" value="true" id="forgetPassword">-->
+<!--                          <label class="form-check-label" for="forgetPassword">Forget Password</label>-->
+<!--                        </div>-->
+<!--                      </div>-->
 
 
                       <div class="col-12">
-                        <button class="btn btn-primary w-100" type="submit">Login</button>
+                        <button class="btn btn-primary w-100" type="submit" id="login">Login</button>
                       </div>
                       <div class="col-12">
                         <p class="small mb-0">Don't have account? <a href="register.html">Create an account</a></p>
                       </div>
-                    </form>
+<!--                    </form>-->
                   </div>
 
 
@@ -126,6 +127,8 @@
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -143,3 +146,29 @@
 </body>
 
 </html>
+
+<script src="requestClass.js"></script>
+<script>
+  var req = new requestClass();
+
+  $(document).ready(function (){
+
+    $('#login').on('click', function (){
+
+      var data = {
+        'email' : $('#email').val(),
+        'password' : $('#yourPassword').val(),
+      };
+
+
+      var res = req.doRequest('user/login', 'post', data);
+      debugger;
+      if (res.token) {
+        window.location = '/bookingWeb/companyInformation.php';
+      } else {
+        alert("Invalid Credential");
+      }
+
+    });
+  })
+</script>

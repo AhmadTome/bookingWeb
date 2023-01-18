@@ -27,8 +27,8 @@
         <span class="bi bi-calendar" style="color: #ff0080"></span> Employee Schedule
 
         <div class="float-end">
-            <button class="btn btn-warning">Cancel</button>
-            <button class="btn btn-primary">Save & Close</button>
+            <button class="btn btn-warning back">Cancel</button>
+            <button class="btn btn-primary back" data-save="employee_schedule">Save & Close</button>
         </div>
     </h2>
 
@@ -39,7 +39,7 @@
             <div class="card-body p-2">
                 <div class="col-3 float-start p-4">
                     <div class="form-check form-switch ">
-                        <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes"
+                        <input class="form-check-input" type="checkbox" id="satSwitch" name="darkmode" value="yes"
                                checked>
                         <label class="form-check-label" for="mySwitch">Saturday</label>
                     </div>
@@ -69,7 +69,7 @@
             <div class="card-body p-2">
                 <div class="col-3 float-start p-4">
                     <div class="form-check form-switch ">
-                        <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes"
+                        <input class="form-check-input" type="checkbox" id="monSwitch" name="darkmode" value="yes"
                                checked>
                         <label class="form-check-label" for="mySwitch">Monday</label>
                     </div>
@@ -99,7 +99,7 @@
             <div class="card-body p-2">
                 <div class="col-3 float-start p-4">
                     <div class="form-check form-switch ">
-                        <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes"
+                        <input class="form-check-input" type="checkbox" id="tusSwitch" name="darkmode" value="yes"
                                checked>
                         <label class="form-check-label" for="mySwitch">Tuesday</label>
                     </div>
@@ -129,7 +129,7 @@
             <div class="card-body p-2">
                 <div class="col-3 float-start p-4">
                     <div class="form-check form-switch ">
-                        <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes"
+                        <input class="form-check-input" type="checkbox" id="wenSwitch" name="darkmode" value="yes"
                                checked>
                         <label class="form-check-label" for="mySwitch">Wednesday</label>
                     </div>
@@ -159,7 +159,7 @@
             <div class="card-body p-2">
                 <div class="col-3 float-start p-4">
                     <div class="form-check form-switch ">
-                        <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes"
+                        <input class="form-check-input" type="checkbox" id="thuSwitch" name="darkmode" value="yes"
                                checked>
                         <label class="form-check-label" for="mySwitch">Thursday</label>
                     </div>
@@ -189,7 +189,7 @@
             <div class="card-body p-2">
                 <div class="col-3 float-start p-4">
                     <div class="form-check form-switch ">
-                        <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes"
+                        <input class="form-check-input" type="checkbox" id="friSwitch" name="darkmode" value="yes"
                                checked>
                         <label class="form-check-label" for="mySwitch">Friday</label>
                     </div>
@@ -219,7 +219,7 @@
             <div class="card-body p-2">
                 <div class="col-3 float-start p-4">
                     <div class="form-check form-switch ">
-                        <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes"
+                        <input class="form-check-input" type="checkbox" id="sunSwitch" name="darkmode" value="yes"
                                checked>
                         <label class="form-check-label" for="mySwitch">Sunday</label>
                     </div>
@@ -249,7 +249,6 @@
 
 <script>
     const setLabel = (lbl, val, index) => {
-
         if (index == 0) {
             const label = $(`#slider-${lbl}-label`);
             label.text(val);
