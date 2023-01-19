@@ -7,6 +7,10 @@ class requestClass {
 
     doRequest(url, type, data = {}){
 
+        // var token = localStorage.getItem('token');
+        var token = "12|pjrQRyyyw8yZB9kXWrVIduuEsZC3u3hkAEuIlYDK";
+        data._token = token;
+
         var res = [];
         $.ajax({
             url: this.getServer() + url,
@@ -14,13 +18,9 @@ class requestClass {
             "headers": {
                 "Content-Type": "application/x-www-form-urlencoded",
                 'X-Requested-With': 'XMLHttpRequest',
-                "Authorization": "Bearer 10|PhWPvzoUeo4VcyVPVsMiOnUFCP6yq9J7gEgNENuH",
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-
+                "Authorization": "Bearer " + token,
+                'X-CSRF-TOKEN': token
             },
-            // beforeSend: function (xhr) {
-            //     xhr.setRequestHeader('Authorization', 'Bearer 7|wgwXc6eFCDJGx6XXHLmTLJYZQ4XdMWJ5ik4DcL3X');
-            // },
             data: data,
             async: false,
             success: function (data) {

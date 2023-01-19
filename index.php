@@ -6,6 +6,22 @@ include('layout/header.php');
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Bookings</h5>
+
+            <div class="row">
+
+
+                <div class="col-3">
+                    <button class="btn btn-primary" >Upcoming Booking</button>
+                </div>
+
+                <div class="col-3">
+                    <button class="btn btn-primary">All Booking</button>
+                </div>
+
+
+            </div>
+
+
             <table class="table table-sm" id="booking_Table" style="display: none">
                 <thead>
                 <tr>

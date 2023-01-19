@@ -75,7 +75,7 @@ include('layout/header.php');
 
 
 
-            <table class="table table-sm">
+            <table class="table table-sm" id="clients">
                 <thead>
                 <tr>
                     <th scope="col"><input type="checkbox" ></th>
@@ -88,23 +88,23 @@ include('layout/header.php');
                 <tbody>
                 <tr>
                     <td></td>
-                    <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
-                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" id="name" class="form-control"></td>
+                    <td><input type="text" id="phone" class="form-control"></td>
+                    <td><input type="text" id="email" class="form-control"></td>
 
                     <td>
                         <div class="row">
-                            <div class="col-5"><button class="btn btn-warning">Apply</button></div>
-                            <div class="col-5"><button class="btn btn-danger">Clear</button></div>
+                            <div class="col-5"><button class="btn btn-warning" id="apply">Apply</button></div>
+                            <div class="col-5"><button class="btn btn-danger" id="clear">Clear</button></div>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td><input type="checkbox" ></td>
-                    <td>Brandon Jacob</td>
-                    <td>05985216436</td>
-                    <td>atome@asaltech.com</td>
-                </tr>
+<!--                <tr>-->
+<!--                    <td><input type="checkbox" ></td>-->
+<!--                    <td>Brandon Jacob</td>-->
+<!--                    <td>05985216436</td>-->
+<!--                    <td>atome@asaltech.com</td>-->
+<!--                </tr>-->
 
                 </tbody>
             </table>
@@ -120,5 +120,63 @@ include('layout/header.php');
 include('layout/footer.html');
 ?>
 
+<script src="requestClass.js"></script>
+<script>
+    var req = new requestClass();
+
+
+    loadClients();
+
+    function loadClients() {
+        var res = req.doRequest('client/list', 'get');
+        if (res) {
+            var data = res;
+            for (var i=0; i<data.length; i++) {
+
+                $('#clients>tbody').empty();
+                $('#clients>tbody').append(`
+                 <tr>
+                    <td><input type="checkbox" ></td>
+                    <td>${data[i].name}</td>
+                    <td>${data[i].phone}</td>
+                    <td>${data[i].email}</td>
+                </tr>
+                `);
+            }
+        }
+
+    }
+    $(document).ready(function (){
+        $('#clear').on('click', function (){
+            $('#name').val('');
+            $('#phone').val('');
+            $('#email').val('');
+        });
+
+        $('#apply').on('click', function (){
+            var data = {
+                name:  $('#name').val(),
+                phone: $('#phone').val(),
+                email: $('#email').val(),
+            }
+
+            var res = req.doRequest('client/add', 'post', data);
+            if (res) {
+                $('#clients>tbody').append(`
+                 <tr>
+                    <td><input type="checkbox" ></td>
+                    <td>${data.name}</td>
+                    <td>${data.phone}</td>
+                    <td>${data.email}</td>
+                </tr>
+                `);
+            } else {
+                alert("cant add client");
+            }
+
+
+        });
+    })
+</script>
 
 
