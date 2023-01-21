@@ -10,7 +10,7 @@ include('layout/header.php');
            <h2>Control Queue </h2>
             <br/>
             <h4>
-                Queue Name <span class="bi bi-eye " data-bs-toggle="modal" data-bs-target="#disablebackdrop" style="cursor: pointer"></span>
+                <span class="queueName"></span> <span class="bi bi-eye " data-bs-toggle="modal" data-bs-target="#disablebackdrop" style="cursor: pointer"></span>
             </h4>
             <br/><br/>
             <h6>Current Client</h6>
@@ -65,11 +65,11 @@ include('layout/header.php');
 
                             <div class="row">
                                 <label class="form-label col-6">Queue ID</label>
-                                <label class="form-label col-6">1234567</label>
+                                <label class="form-label col-6" id="queueID"></label>
                             </div>
                             <div class="row">
                                 <label class="form-label col-6">Queue Name</label>
-                                <label class="form-label col-6">Name</label>
+                                <label class="form-label col-6 queueName"></label>
                             </div>
 
                         </div>
@@ -113,6 +113,47 @@ include('layout/header.php');
 <?php
 include('layout/footer.html');
 ?>
+
+<script src="requestClass.js"></script>
+<script>
+    var req = new requestClass();
+
+    $(document).ready(function (){
+
+        loadCurrentQueue();
+
+         function loadCurrentQueue(){
+
+            var res =  req.doRequest('getCurrentQueue', 'get');
+            getQueueInfo(res);
+             getCurrentCustomer(res);
+
+
+        }
+
+        function getQueueInfo(id) {
+            var res = req.doRequest('queue/getDetails/'+id, 'get', {});
+            if (res.queue) {
+                $(".queueName").text(res.queue.name);
+                $("#queueID").text(res.queue.id);
+               }
+        }
+
+        function getCurrentCustomer(id) {
+            var res = req.doRequest('getCurrentCustomer/'+id, 'get', {});
+            debugger;
+            if (res.queue) {
+                $(".queueName").text(res.queue.name);
+                $("#queueID").text(res.queue.id);
+               }
+        }
+
+
+
+
+
+    })
+</script>
 
 
 

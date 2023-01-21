@@ -16,7 +16,7 @@ include('layout/header.php');
                                title="Enter search keyword">
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-sm btn-warning">
+                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#addQueue">
                             <i class="bi bi-plus"></i>
                         </button>
                     </div>
@@ -63,6 +63,67 @@ include('layout/header.php');
 
         </div>
 
+        <div class="modal fade" id="addQueue" tabindex="-1" data-bs-backdrop="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Queue Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Queue Name</label>
+                                <input type="text" class="form-control" id="m_name" placeholder="">
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Employee Name</label>
+                                <select id="employees" class="form-control">
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Service Name</label>
+                                <select class="form-control" id="m_servive_name">
+
+                                </select>
+                            </div>
+
+
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Queue Active Time</label>
+                                <input type="text" class="form-control" id="m_time" placeholder="">
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">repeats</label>
+                                <select class="form-control" id="m_repeats">
+
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="addQueue()">add</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Disabled Backdrop Modal-->
+
+
+
     </main><!-- End #main -->
 
 
@@ -102,7 +163,7 @@ include('layout/footer.html');
             var employees = $('.employee-check:checked');
             if(employees.length > 0) {
                 var id = (employees[0]).closest('#userCard').getAttribute('data-id')
-               // loadEmployeeSchedule(id);
+                loadQueueSchedule(id);
 
 
 
@@ -135,11 +196,11 @@ include('layout/footer.html');
                     times = times.split(',');
                     var data = {
                         source_id: id,
-                        start_time: times[0],
-                        end_time: times[1],
-                        day: 6
+                        start_time: times[0] + ":00:00",
+                        end_time: times[1] + ":00:00",
+                        day: 0
                     }
-                    req.doRequest('updateUserTime', 'put', data);
+                    req.doRequest('updateQueueTime', 'get', data);
                 }
 
 
@@ -148,11 +209,11 @@ include('layout/footer.html');
                     times = times.split(',');
                     var data = {
                         source_id: id,
-                        start_time: times[0],
-                        end_time: times[1],
-                        day: 0
+                        start_time: times[0] + ":00:00",
+                        end_time: times[1] + ":00:00",
+                        day: 1
                     }
-                    req.doRequest('updateUserTime', 'put', data);
+                    req.doRequest('updateQueueTime', 'get', data);
                 }
 
 
@@ -161,11 +222,11 @@ include('layout/footer.html');
                     times = times.split(',');
                     var data = {
                         source_id: id,
-                        start_time: times[0],
-                        end_time: times[1],
-                        day: 1
+                        start_time: times[0] + ":00:00",
+                        end_time: times[1] + ":00:00",
+                        day: 2
                     }
-                    req.doRequest('updateUserTime', 'put', data);
+                    req.doRequest('updateQueueTime', 'get', data);
                 }
 
                 if($('#wenSwitch')[0].checked) {
@@ -173,11 +234,11 @@ include('layout/footer.html');
                     times = times.split(',');
                     var data = {
                         source_id: id,
-                        start_time: times[0],
-                        end_time: times[1],
-                        day: 2
+                        start_time: times[0] + ":00:00",
+                        end_time: times[1] + ":00:00",
+                        day: 3
                     }
-                    req.doRequest('updateUserTime', 'put', data);
+                    req.doRequest('updateQueueTime', 'get', data);
                 }
 
                 if($('#thuSwitch')[0].checked) {
@@ -185,11 +246,11 @@ include('layout/footer.html');
                     times = times.split(',');
                     var data = {
                         source_id: id,
-                        start_time: times[0],
-                        end_time: times[1],
-                        day: 3
+                        start_time: times[0] + ":00:00",
+                        end_time: times[1] + ":00:00",
+                        day: 4
                     }
-                    req.doRequest('updateUserTime', 'put', data);
+                    req.doRequest('updateQueueTime', 'get', data);
                 }
 
                 if($('#friSwitch')[0].checked) {
@@ -197,11 +258,11 @@ include('layout/footer.html');
                     times = times.split(',');
                     var data = {
                         source_id: id,
-                        start_time: times[0],
-                        end_time: times[1],
-                        day: 4
+                        start_time: times[0] + ":00:00",
+                        end_time: times[1] + ":00:00",
+                        day: 5
                     }
-                    req.doRequest('updateUserTime', 'put', data);
+                    req.doRequest('updateQueueTime', 'get', data);
                 }
 
 
@@ -210,11 +271,11 @@ include('layout/footer.html');
                     times = times.split(',');
                     var data = {
                         source_id: id,
-                        start_time: times[0],
-                        end_time: times[1],
-                        day: 5
+                        start_time: times[0] + ":00:00",
+                        end_time: times[1] + ":00:00",
+                        day: 6
                     }
-                    req.doRequest('updateUserTime', 'put', data);
+                    req.doRequest('updateQueueTime', 'get', data);
                 }
 
 
@@ -253,7 +314,7 @@ include('layout/footer.html');
         var employees = $('.employee-check:checked');
         for(var i=0; i<employees.length;i++) {
             var id = (employees[i]).closest('#userCard').getAttribute('data-id')
-            req.doRequest('queue/delete/'+id, 'delete');
+            req.doRequest('queue/delete/'+id, 'get');
         }
 
     }
@@ -263,7 +324,7 @@ include('layout/footer.html');
         var res = req.doRequest('queue/getDetails/'+id, 'get', {});
         if (res.queue) {
             $("#name").val(res.queue.name);
-            $("#employeeName").val(res.Employee_name || '');
+            $("#employeeName").val(res.Employee_name.name || '');
             $("#employeeName").attr('data-id', res.queue.user_id);
             $("#servive_name").append(`<option id="${res.service_name[0].id}"> ${res.service_name[0].name} </option>`);
             $("#time").val(res.queue.start_regesteration);
@@ -287,21 +348,19 @@ include('layout/footer.html');
 
 
     function loadQueueSchedule(id){
-        var res = req.doRequest('getscheduleTime/'+id+'/1', 'get');
+        var res = req.doRequest('getscheduleTime/'+id+'/2', 'get');
         if (res.time) {
             var times = res.time;
-
             for(var i=0; i< times.length; i++) {
-                if(times[i].day == 0) {
-                    setLabel('min', 10,0);
-                    setLabel('max', 14,0);
+                // setLabel("min", parseInt((times[i].start_time).substr(0,2)),i);
+                // setLabel("max", parseInt((times[i].end_time).substr(0,2)),i);
 
-                }
+                var div = (($("#ex"+ (i+2))[0]).parentElement.parentElement).querySelectorAll('div');
+                div[0].textContent = (times[i].start_time).substr(0,5) +' am';
+                div[div.length-1].textContent = (times[i].end_time).substr(0,5)+ ' pm';
+
             }
-
-
         }
-        // debugger;
 
     }
 
@@ -312,6 +371,36 @@ include('layout/footer.html');
 
         loadQueue();
 
+        loadEmployees();
+
+        loadServices();
+
+
+        function loadEmployees(){
+            var res = req.doRequest('user/getUsers', 'get');
+            if(res.length > 0) {
+                res.forEach((user)=>{
+                    let ele = `<option value="${user.id}">${user.name}</option>`;
+
+                    $("#employees").append(ele);
+                })
+            }
+        }
+
+        function loadServices() {
+            var res = req.doRequest('service/getAllServices', 'get', {});
+            if(res.services) {
+                res = res.services;
+                res.forEach((user)=>{
+                    let ele = `<option value="${user.id}">${user.name}</option>`;
+
+                    $("#m_servive_name").append(ele);
+                })
+
+
+            }
+
+        }
 
 
         function loadQueue() {
@@ -356,6 +445,19 @@ include('layout/footer.html');
 
 
 
+
     })
+
+    function addQueue() {
+        var data = {
+            name: $("#m_name").val(),
+            start_regesteration: $("#m_time").val(),
+            services: [$("#m_servive_name").val()],
+            repeats: 1,
+            user_id: $("#employees").val(),
+        }
+        var res = req.doRequest('queue/add', 'get', data);
+        window.location.reload();
+    }
 </script>
 

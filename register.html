@@ -245,7 +245,9 @@
 
         var res = req.doRequest('register', 'post', data);
         if (res.token) {
-          localStorage.setItem('token', res.token)
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('company_id', res.user.company_id)
+
           window.location = '/bookingWeb/companyInformation.php';
         } else {
           alert("account does not created!");

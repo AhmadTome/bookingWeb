@@ -19,8 +19,8 @@ include('layout/header.php');
                                title="Enter search keyword">
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-sm btn-warning">
-                            <i class="bi bi-plus"></i>
+                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#addEmployee">
+                            <i class="bi bi-plus" ></i>
                         </button>
                     </div>
                     <div class="col-2">
@@ -64,6 +64,64 @@ include('layout/header.php');
         </div>
 
     </main><!-- End #main -->
+
+
+<div class="modal fade" id="addEmployee" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Queue Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Name</label>
+                        <input type="email" class="form-control" id="m_name" placeholder="name@example.com">
+                    </div>
+
+
+
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">role_id</label>
+                        <select class="form-control" id="m_role">
+
+                        </select>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Employee E-mail</label>
+                        <input type="email" class="form-control" id="m_email" placeholder="name@example.com">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Employee E-mail</label>
+                        <input type="password" class="form-control" id="m_password" >
+                    </div>
+
+
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Phone</label>
+                        <input type="email" class="form-control" id="m_phone" >
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" onclick="addEmployees()">add</button>
+            </div>
+        </div>
+    </div>
+</div><!-- End Disabled Backdrop Modal-->
+
+
+
 
 
 <?php
@@ -146,7 +204,7 @@ include('layout/footer.html');
                         end_time: times[1],
                         day: 6
                     }
-                    req.doRequest('updateUserTime', 'put', data);
+                    req.doRequest('updateUserTime', 'get', data);
                 }
 
 
@@ -159,7 +217,7 @@ include('layout/footer.html');
                        end_time: times[1],
                        day: 0
                    }
-                   req.doRequest('updateUserTime', 'put', data);
+                   req.doRequest('updateUserTime', 'get', data);
                }
 
 
@@ -172,7 +230,7 @@ include('layout/footer.html');
                        end_time: times[1],
                        day: 1
                    }
-                   req.doRequest('updateUserTime', 'put', data);
+                   req.doRequest('updateUserTime', 'get', data);
                }
 
                if($('#wenSwitch')[0].checked) {
@@ -184,7 +242,7 @@ include('layout/footer.html');
                        end_time: times[1],
                        day: 2
                    }
-                   req.doRequest('updateUserTime', 'put', data);
+                   req.doRequest('updateUserTime', 'get', data);
                }
 
                if($('#thuSwitch')[0].checked) {
@@ -196,7 +254,7 @@ include('layout/footer.html');
                        end_time: times[1],
                        day: 3
                    }
-                   req.doRequest('updateUserTime', 'put', data);
+                   req.doRequest('updateUserTime', 'get', data);
                }
 
                if($('#friSwitch')[0].checked) {
@@ -208,7 +266,7 @@ include('layout/footer.html');
                        end_time: times[1],
                        day: 4
                    }
-                   req.doRequest('updateUserTime', 'put', data);
+                   req.doRequest('updateUserTime', 'get', data);
                }
 
 
@@ -221,7 +279,7 @@ include('layout/footer.html');
                        end_time: times[1],
                        day: 5
                    }
-                   req.doRequest('updateUserTime', 'put', data);
+                   req.doRequest('updateUserTime', 'get', data);
                }
 
 
@@ -255,13 +313,27 @@ include('layout/footer.html');
 <script>
     var req = new requestClass();
 
+    function addEmployees() {
+        var data = {
+            name: $("#m_name").val(),
+            phone_number: $("#m_phone").val(),
+            email: $("#m_email").val(),
+            role_id: $("#m_role").val(),
+            password: $("#m_password").val(),
+        }
+        var res = req.doRequest('user/add/', 'get', data);
+        window.location.reload();
+    }
+
+
     function deleteEmployees() {
         var employees = $('.employee-check:checked');
         for(var i=0; i<employees.length;i++) {
             var id = (employees[i]).closest('#userCard').getAttribute('data-id')
-            req.doRequest('user/delete/'+id, 'delete');
+            req.doRequest('user/delete/'+id, 'get');
         }
 
+        window.location.reload();
     }
 
 
@@ -280,11 +352,11 @@ include('layout/footer.html');
     function updateUser(id) {
         var data = {
             name: $("#name").val(),
-            phone: $("#phone").val(),
+            phone_number: $("#phone").val(),
             email: $("#email").val(),
-            role: $("#role").val(),
+            role_id: $("#role").val(),
         }
-        var res = req.doRequest('user/updateDetails/'+id, 'put', data);
+        var res = req.doRequest('user/updateDetails/'+id, 'get', data);
     }
 
 
@@ -292,19 +364,16 @@ include('layout/footer.html');
         var res = req.doRequest('getscheduleTime/'+id+'/1', 'get');
         if (res.time) {
             var times = res.time;
-
             for(var i=0; i< times.length; i++) {
-                if(times[i].day == 0) {
-                    setLabel('min', 10,0);
-                    setLabel('max', 14,0);
+                    // setLabel("min", parseInt((times[i].start_time).substr(0,2)),i);
+                    // setLabel("max", parseInt((times[i].end_time).substr(0,2)),i);
 
-                }
+                    var div = (($("#ex"+ (i+2))[0]).parentElement.parentElement).querySelectorAll('div');
+                    div[0].textContent = (times[i].start_time).substr(0,5) +' am';
+                    div[div.length-1].textContent = (times[i].end_time).substr(0,5)+ ' pm';
+
             }
-
-
         }
-        // debugger;
-
     }
 
 
@@ -318,8 +387,9 @@ include('layout/footer.html');
 
 
         function loadEmployees() {
-            var res = req.doRequest('user/getUsers', 'get', {});
-            if(res.length > 0) {
+            var res = req.doRequest('user/getAllUsers', 'get', {});
+            if(res.users.length > 0) {
+                res = res.users;
                 res.forEach((user)=>{
                     let ele = `<div class="row" id="userCard" data-id="${user.id}">
                     <div class="col-12">
@@ -363,6 +433,7 @@ include('layout/footer.html');
                 $('#role').empty();
                 res.forEach((role) => {
                     $('#role').append(`<option value="${role.id}">${role.name}</option>`);
+                    $('#m_role').append(`<option value="${role.id}">${role.name}</option>`);
 
                 })
 

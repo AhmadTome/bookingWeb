@@ -98,8 +98,12 @@ include('layout/footer.html');
     $(document).ready(function () {
         $('#delete').on('click', function () {
 
-            var res = req.doRequest('company/delete', 'delete', {});
-            alert(res[0].message);
+            var res = req.doRequest('company/delete', 'get', {});
+
+
+
+            alert(res.message);
+            window.location.reload();
 
         });
     })

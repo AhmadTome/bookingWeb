@@ -124,59 +124,79 @@ include('layout/footer.html');
 <script>
     var req = new requestClass();
 
+    $(document).ready(function (){
 
-    loadClients();
+        loadClient();
 
-    function loadClients() {
-        var res = req.doRequest('client/list', 'get');
-        if (res) {
-            var data = res;
-            for (var i=0; i<data.length; i++) {
+        function loadClient(){
 
-                $('#clients>tbody').empty();
-                $('#clients>tbody').append(`
-                 <tr>
-                    <td><input type="checkbox" ></td>
-                    <td>${data[i].name}</td>
-                    <td>${data[i].phone}</td>
-                    <td>${data[i].email}</td>
-                </tr>
-                `);
+            var res = req.doRequest('user/getAllUsers', 'get');
+
+            if (res.users.length > 0) {
+                var users = res.users;
+                for(var i=0; i<users.length;i++) {
+                    $('#clients').append(`
+                    <tr>
+<td></td>
+                        <td>${users[i].name}</td>
+                        <td>${users[i].phone_number}</td>
+                        <td>${users[i].email}</td>
+                    </tr>
+                `)
+                }
+
+            }else {
+                alert('لا يوجد معلومات')
             }
+
+
         }
 
-    }
-    $(document).ready(function (){
         $('#clear').on('click', function (){
             $('#name').val('');
             $('#phone').val('');
             $('#email').val('');
+            $('#role').val('');
         });
 
         $('#apply').on('click', function (){
+
             var data = {
-                name:  $('#name').val(),
-                phone: $('#phone').val(),
-                email: $('#email').val(),
-            }
+                'name' : $('#name').val(),
+                'email' : $('#email').val(),
+                'phone_number' : $('#phone').val(),
+            };
 
-            var res = req.doRequest('client/add', 'post', data);
-            if (res) {
-                $('#clients>tbody').append(`
-                 <tr>
-                    <td><input type="checkbox" ></td>
-                    <td>${data.name}</td>
-                    <td>${data.phone}</td>
-                    <td>${data.email}</td>
-                </tr>
-                `);
-            } else {
-                alert("cant add client");
-            }
 
+            var res = req.doRequest('filter1', 'get', data);
+
+
+
+            $("#clients").find("tr:gt(1)").remove();
+
+
+            if (res.user.length > 0) {
+                var users = res.user;
+                for(var i=0; i<users.length;i++) {
+                    $('#clients').append(`
+                    <tr>
+                        <td>${users[i].name}</td>
+                        <td>${users[i].phone_number}</td>
+                        <td>${users[i].email}</td>
+                    </tr>
+                `)
+                }
+
+            }
 
         });
+
+
+
     })
 </script>
+
+
+
 
 

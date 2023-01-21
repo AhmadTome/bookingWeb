@@ -112,7 +112,9 @@ include('layout/footer.html');
         loadInfo();
 
         function loadInfo(){
-            var res = req.doRequest('company/getProfile/'+ 1, 'get');
+            var company_id = localStorage.getItem('company_id')
+
+            var res = req.doRequest('company/getProfile/'+ company_id, 'get');
 
             if (res.company) {
                 $('#companyName').val(res.company.name);
@@ -122,6 +124,7 @@ include('layout/footer.html');
                 $('#companyCity').val(res.address[0].city);
                 $('#companyCountry').val(res.address[0].country);
                 $('#companyCategory').val(res.category[0].name);
+                $('#companyCategory').attr('data-id', res.category[0].id);
             }else {
                 alert('لا يوجد معلومات')
             }
@@ -136,7 +139,7 @@ include('layout/footer.html');
                 'name' : $('#companyName').val(),
                 'email' : $('#companyEmail').val(),
                 'phone_number' : $('#companyPhone').val(),
-                'category_id' : $('#companyCategory').val(),
+                'category_id' : $('#companyCategory').attr('data-id'),
                 'description' : $('#companyDescription').val(),
                 'type' : 1,
                 'street' : $('#companyStreet').val(),
@@ -146,7 +149,7 @@ include('layout/footer.html');
             };
 
 
-            var res = req.doRequest('company/updateProfile', 'post', data);
+            var res = req.doRequest('company/updateProfile', 'get', data);
             if (res.length > 1) {
                 alert("company Info updated successfully");
             } else {

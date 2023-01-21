@@ -15,7 +15,7 @@ include('layout/header.php');
                                title="Enter search keyword">
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-sm btn-warning">
+                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#addService">
                             <i class="bi bi-plus"></i>
                         </button>
                     </div>
@@ -37,6 +37,57 @@ include('layout/header.php');
                 </div>
 
             </div>
+
+
+            <div class="modal fade" id="addService" tabindex="-1" data-bs-backdrop="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Queue Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Service Name</label>
+                                    <input type="text" class="form-control" id="m_name" placeholder="">
+                                </div>
+
+
+                                <div class="mb-3 row">
+                                    <label for="exampleFormControlInput1" class="form-label">Service duration</label><br/>
+                                    <span class="col-6">
+                Hours <br/>
+                <input type="text" class="form-control" id="m_hour" placeholder="">
+
+                                        <!--                <select class="form-control">-->
+                                        <!--                    <option></option>-->
+                                        <!--                </select>-->
+            </span>
+                                    <span class="col-6">
+                Minutes <br/>
+                <input type="text" class="form-control" id="m_minit" placeholder="">
+
+                                        <!--                <select class="form-control">-->
+                                        <!--                    <option></option>-->
+                                        <!--                </select>-->
+            </span>
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" onclick="addService()">add</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Disabled Backdrop Modal-->
 
 
             <div class="card col-12 col-sm-7 m-2">
@@ -123,11 +174,13 @@ include('layout/footer.html');
     function updateServiceInfo(id) {
         var data = {
             name: $("#name").val(),
+            duration_time: $('#hour').val() +":"+$("#minit").val(),
             hour: $("#hour").val(),
             minit: $("#minit").val(),
             logo: $("#logo").val()
         }
-        var res = req.doRequest('service/updateDetails/'+id, 'post', data);
+        var res = req.doRequest('service/updateDetails/'+id, 'get', data);
+        alert('service updated successfully')
     }
 
 
@@ -174,6 +227,17 @@ include('layout/footer.html');
 
         }
     });
+
+    function addService() {
+        var data = {
+            name: $("#m_name").val(),
+            logo: 'logo',
+            duration_time: $('#m_hour').val() +":"+$("#m_minit").val()
+
+        }
+        var res = req.doRequest('service/add', 'get', data);
+        window.location.reload();
+    }
 </script>
 
 

@@ -164,6 +164,7 @@
       var res = req.doRequest('user/login', 'post', data);
       if (res.token) {
         localStorage.setItem('token', res.token)
+        localStorage.setItem('company_id', res.user.company_id)
         window.location = '/bookingWeb/companyInformation.php';
       } else {
         alert("Invalid Credential");

@@ -11,11 +11,11 @@ include('layout/header.php');
 
 
                 <div class="col-3">
-                    <button class="btn btn-primary" >Upcoming Booking</button>
+                    <button class="btn btn-primary" onclick="loadBooking('getUpComingBooking')">Upcoming Booking</button>
                 </div>
 
                 <div class="col-3">
-                    <button class="btn btn-primary">All Booking</button>
+                    <button class="btn btn-primary" onclick="loadBooking('expiredBooking')">All Booking</button>
                 </div>
 
 
@@ -32,12 +32,7 @@ include('layout/header.php');
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                </tr>
+
 
                 </tbody>
             </table>
@@ -53,27 +48,45 @@ include('layout/footer.html');
 
 <script src="requestClass.js"></script>
 <script>
-    $(document).ready(function () {
+    var req = new requestClass();
 
-        var req = new requestClass();
+    loadBooking("getUpComingBooking");
 
-        loadBooking();
+    function loadBooking(api) {
+        var res = req.doRequest(api, 'get', {});
+        $('#booking_Table>tbody').empty();
 
-        function loadBooking() {
-            var res = req.doRequest('getUpComingBooking', 'get', {});
-            $('#booking_Table').show()
-            if(res.message){
-                $('#booking_Table>tbody').empty();
-                $('#booking_Table>tbody').append('<tr>' +
-                    '<td></td>' +
-                    '<td style="text-align: right">No Item</td>' +
-                    '<td></td>' +
-                    '<td></td>' +
-                    '</tr>');
-            }else{
+        $('#booking_Table').show()
+        if(res.message){
+            $('#booking_Table>tbody').empty();
+            $('#booking_Table>tbody').append('<tr>' +
+                '<td></td>' +
+                '<td style="text-align: right">No Item</td>' +
+                '<td></td>' +
+                '<td></td>' +
+                '</tr>');
+        }else{
 
+            for (var i=0; i< 20; i++) {
+                if(res[i]) {
+                    var data = res[i].original;
+                    $('#booking_Table>tbody').append(`
+                        <tr>
+                            <th scope="row">${data.date}</th>
+                            <td>${data.service_time_number[0].start_time + " - " + data.service_time_number[0].end_time}</td>
+                            <td>${data.service_name}</td>
+                            <td>${data.client_name}</td>
+                        </tr>
+                        `);
+                }
             }
         }
+    }
+
+
+    $(document).ready(function () {
+
+
 
 
     })

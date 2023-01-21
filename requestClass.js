@@ -8,8 +8,8 @@ class requestClass {
     doRequest(url, type, data = {}){
 
         // var token = localStorage.getItem('token');
-        var token = "12|pjrQRyyyw8yZB9kXWrVIduuEsZC3u3hkAEuIlYDK";
-        data._token = token;
+        var token = "7|R9LpmCkasErOfZQKtnHsONrgdp2vwNJbCZtROdtd";
+        // data._token = token;
 
         var res = [];
         $.ajax({

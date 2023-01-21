@@ -47,8 +47,8 @@
 
                 <div class="col-8 float-end p-0">
                     <div id="slider-outer-div">
-                        <div id="slider-max-label" class="slider-label"></div>
-                        <div id="slider-min-label" class="slider-label"></div>
+<!--                        <div id="slider-max-label" class="slider-label"></div>-->
+<!--                        <div id="slider-min-label" class="slider-label"></div>-->
                         <div id="slider-div">
                             <div>8:00 am</div>
                             <div>
@@ -77,8 +77,8 @@
 
                 <div class="col-8 float-end p-0">
                     <div id="slider-outer-div">
-                        <div id="slider-max1-label" class="slider-label"></div>
-                        <div id="slider-min1-label" class="slider-label"></div>
+<!--                        <div id="slider-max1-label" class="slider-label"></div>-->
+<!--                        <div id="slider-min1-label" class="slider-label"></div>-->
                         <div id="slider-div">
                             <div>8:00 am</div>
                             <div>
@@ -107,8 +107,8 @@
 
                 <div class="col-8 float-end p-0">
                     <div id="slider-outer-div">
-                        <div id="slider-max2-label" class="slider-label"></div>
-                        <div id="slider-min2-label" class="slider-label"></div>
+<!--                        <div id="slider-max2-label" class="slider-label"></div>-->
+<!--                        <div id="slider-min2-label" class="slider-label"></div>-->
                         <div id="slider-div">
                             <div>8:00 am</div>
                             <div>
@@ -137,8 +137,8 @@
 
                 <div class="col-8 float-end p-0">
                     <div id="slider-outer-div">
-                        <div id="slider-max3-label" class="slider-label"></div>
-                        <div id="slider-min3-label" class="slider-label"></div>
+<!--                        <div id="slider-max3-label" class="slider-label"></div>-->
+<!--                        <div id="slider-min3-label" class="slider-label"></div>-->
                         <div id="slider-div">
                             <div>8:00 am</div>
                             <div>
@@ -167,8 +167,8 @@
 
                 <div class="col-8 float-end p-0">
                     <div id="slider-outer-div">
-                        <div id="slider-max4-label" class="slider-label"></div>
-                        <div id="slider-min4-label" class="slider-label"></div>
+<!--                        <div id="slider-max4-label" class="slider-label"></div>-->
+<!--                        <div id="slider-min4-label" class="slider-label"></div>-->
                         <div id="slider-div">
                             <div>8:00 am</div>
                             <div>
@@ -197,8 +197,8 @@
 
                 <div class="col-8 float-end p-0">
                     <div id="slider-outer-div">
-                        <div id="slider-max5-label" class="slider-label"></div>
-                        <div id="slider-min5-label" class="slider-label"></div>
+<!--                        <div id="slider-max5-label" class="slider-label"></div>-->
+<!--                        <div id="slider-min5-label" class="slider-label"></div>-->
                         <div id="slider-div">
                             <div>8:00 am</div>
                             <div>
@@ -227,8 +227,8 @@
 
                 <div class="col-8 float-end p-0">
                     <div id="slider-outer-div">
-                        <div id="slider-max6-label" class="slider-label"></div>
-                        <div id="slider-min6-label" class="slider-label"></div>
+<!--                        <div id="slider-max6-label" class="slider-label"></div>-->
+<!--                        <div id="slider-min6-label" class="slider-label"></div>-->
                         <div id="slider-div">
                             <div>8:00 am</div>
                             <div>
@@ -278,6 +278,12 @@
         setLabel("max", values[1],0);
     }
     $('#ex2').slider().on('slide', function(ev) {
+
+        var div = (($("#ex2")[0]).parentElement.parentElement).querySelectorAll('div');
+        div[0].textContent = (ev.value[0]) + ':00 am';
+        div[div.length-1].textContent = (ev.value[1])+ ':00 pm';
+
+
         setLabels2(ev.value);
     });
     setLabels2($('#ex2').attr("data-value").split(","));
@@ -290,6 +296,11 @@
     }
 
     $('#ex3').slider().on('slide', function(ev) {
+
+        var div = (($("#ex3")[0]).parentElement.parentElement).querySelectorAll('div');
+        div[0].textContent = (ev.value[0]) + ':00 am';
+        div[div.length-1].textContent = (ev.value[1])+ ':00 pm';
+
         setLabels3(ev.value);
     });
     setLabels3($('#ex3').attr("data-value").split(","));
@@ -300,6 +311,10 @@
         setLabel("max", values[1], 2);
     }
     $('#ex4').slider().on('slide', function(ev) {
+
+        var div = (($("#ex4")[0]).parentElement.parentElement).querySelectorAll('div');
+        div[0].textContent = (ev.value[0]) + ':00 am';
+        div[div.length-1].textContent = (ev.value[1])+ ':00 pm';
         setLabels4(ev.value);
     });
     setLabels4($('#ex4').attr("data-value").split(","));
@@ -310,6 +325,10 @@
         setLabel("max", values[1], 3);
     }
     $('#ex5').slider().on('slide', function(ev) {
+        var div = (($("#ex5")[0]).parentElement.parentElement).querySelectorAll('div');
+        div[0].textContent = (ev.value[0]) + ':00 am';
+        div[div.length-1].textContent = (ev.value[1])+ ':00 pm';
+
         setLabels5(ev.value);
     });
     setLabels5($('#ex5').attr("data-value").split(","));
@@ -320,6 +339,11 @@
         setLabel("max", values[1], 4);
     }
     $('#ex6').slider().on('slide', function(ev) {
+
+        var div = (($("#ex6")[0]).parentElement.parentElement).querySelectorAll('div');
+        div[0].textContent = (ev.value[0]) + ':00 am';
+        div[div.length-1].textContent = (ev.value[1])+ ':00 pm';
+
         setLabels6(ev.value);
     });
     setLabels6($('#ex6').attr("data-value").split(","));
@@ -330,6 +354,11 @@
         setLabel("max", values[1], 5);
     }
     $('#ex7').slider().on('slide', function(ev) {
+
+        var div = (($("#ex7")[0]).parentElement.parentElement).querySelectorAll('div');
+        div[0].textContent = (ev.value[0]) + ':00 am';
+        div[div.length-1].textContent = (ev.value[1])+ ':00 pm';
+
         setLabels7(ev.value);
     });
     setLabels7($('#ex7').attr("data-value").split(","));
@@ -340,6 +369,11 @@
         setLabel("max", values[1], 6);
     }
     $('#ex8').slider().on('slide', function(ev) {
+
+        var div = (($("#ex8")[0]).parentElement.parentElement).querySelectorAll('div');
+        div[0].textContent = (ev.value[0]) + ':00 am';
+        div[div.length-1].textContent = (ev.value[1])+ ':00 pm';
+
         setLabels8(ev.value);
     });
     setLabels8($('#ex8').attr("data-value").split(","));
