@@ -7,8 +7,8 @@ class requestClass {
 
     doRequest(url, type, data = {}){
 
-        // var token = localStorage.getItem('token');
-        var token = "7|R9LpmCkasErOfZQKtnHsONrgdp2vwNJbCZtROdtd";
+         var token = localStorage.getItem('token');
+        //var token = "7|R9LpmCkasErOfZQKtnHsONrgdp2vwNJbCZtROdtd";
         // data._token = token;
 
         var res = [];
