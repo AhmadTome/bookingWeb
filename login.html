@@ -161,7 +161,7 @@
       };
 
 
-      var res = req.doRequest('user/login', 'post', data);
+      var res = req.doRequest('user/login', 'get', data);
       if (res.token) {
         localStorage.setItem('token', res.token)
         localStorage.setItem('company_id', res.user.company_id)
