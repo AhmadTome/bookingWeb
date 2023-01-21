@@ -447,7 +447,7 @@ include('layout/footer.html');
 
 
             } else {
-                alert('No Employees exist')
+                alert('No Queue exist')
             }
 
         }

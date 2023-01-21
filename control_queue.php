@@ -14,20 +14,14 @@ include('layout/header.php');
             </h4>
             <br/><br/>
             <h6>Current Client</h6>
-            <table class="table table-sm">
+            <table class="table table-sm" id="currentCustomerTabel">
                 <thead>
-                <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Phone</th>
-                </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                </tr>
+
 
                 </tbody>
             </table>
@@ -92,7 +86,7 @@ include('layout/header.php');
                     <div class="row">
                         <label class="form-label col-3">Extra Time</label>
                         <div class="col-9">
-                            <input type="text" class="form-control"/>
+                            <input type="text" id="extraTime" class="form-control"/>
                         </div>
                     </div>
 
@@ -100,7 +94,7 @@ include('layout/header.php');
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="saveExtraTime()">Save</button>
                 </div>
             </div>
         </div>
@@ -125,8 +119,9 @@ include('layout/footer.html');
          function loadCurrentQueue(){
 
             var res =  req.doRequest('getCurrentQueue', 'get');
-            getQueueInfo(res);
-             getCurrentCustomer(res);
+            var id = res.active_queue_id;
+            getQueueInfo(id);
+             getCurrentCustomer(id);
 
 
         }
@@ -141,14 +136,29 @@ include('layout/footer.html');
 
         function getCurrentCustomer(id) {
             var res = req.doRequest('getCurrentCustomer/'+id, 'get', {});
-            debugger;
-            if (res.queue) {
-                $(".queueName").text(res.queue.name);
-                $("#queueID").text(res.queue.id);
+
+            if (res.customer) {
+                $("#currentCustomerTabel>tbody").empty();
+                $("#currentCustomerTabel>tbody").append(`
+                    <tr>
+                        <th scope="col">${res.customer.name}</th>
+                        <th scope="col">${res.customer.email}</th>
+                        <th scope="col">${res.customer.phone_number}</th>
+                    </tr>
+                `);
                }
         }
 
+        function saveExtraTime(){
 
+             var data = {
+                 booking_id: '',
+                 delay_Time: $('#extraTime').val()
+             };
+
+            var res = req.doRequest('takeExtraTime/'+data.booking_id+"/"+data.delay_Time, 'get', data);
+
+        }
 
 
 

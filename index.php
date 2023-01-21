@@ -73,7 +73,7 @@ include('layout/footer.html');
                     $('#booking_Table>tbody').append(`
                         <tr>
                             <th scope="row">${data.date}</th>
-                            <td>${data.service_time_number[0].start_time + " - " + data.service_time_number[0].end_time}</td>
+                            <td>${data.service_time_number}</td>
                             <td>${data.service_name}</td>
                             <td>${data.client_name}</td>
                         </tr>
