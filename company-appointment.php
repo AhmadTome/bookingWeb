@@ -523,7 +523,7 @@ include('layout/footer.html');
                 req.doRequest('updateCompanyTime', 'get', data);
             }
 
-
+            alert('appointment updated successfully')
 
 
         })

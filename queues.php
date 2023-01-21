@@ -106,7 +106,14 @@ include('layout/header.php');
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">repeats</label>
                                 <select class="form-control" id="m_repeats">
-
+                                    <option value="all days">all days</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
                                 </select>
                             </div>
 
@@ -317,6 +324,7 @@ include('layout/footer.html');
             req.doRequest('queue/delete/'+id, 'get');
         }
 
+        window.location.reload();
     }
 
 
@@ -324,11 +332,11 @@ include('layout/footer.html');
         var res = req.doRequest('queue/getDetails/'+id, 'get', {});
         if (res.queue) {
             $("#name").val(res.queue.name);
-            $("#employeeName").val(res.Employee_name.name || '');
+            $("#employeeName").val(res.Employee_name ? res.Employee_name.name : '');
             $("#employeeName").attr('data-id', res.queue.user_id);
             $("#servive_name").append(`<option id="${res.service_name[0].id}"> ${res.service_name[0].name} </option>`);
             $("#time").val(res.queue.start_regesteration);
-            $("#repeats").append(`<option id="${res.queue.repeats}"> ${res.queue.repeats} </option>`);
+            $("#repeats").val(res.queue.repeats);
         }
 
     }
@@ -343,7 +351,7 @@ include('layout/footer.html');
             repeats: $("#repeats").val()
 
     }
-        var res = req.doRequest('queue/updateDetails/'+id, 'put', data);
+        var res = req.doRequest('queue/updateDetails/'+id, 'get', data);
     }
 
 
@@ -377,8 +385,9 @@ include('layout/footer.html');
 
 
         function loadEmployees(){
-            var res = req.doRequest('user/getUsers', 'get');
-            if(res.length > 0) {
+            var res = req.doRequest('user/getAllUsers', 'get');
+            if(res.users.length > 0) {
+                res = res.users;
                 res.forEach((user)=>{
                     let ele = `<option value="${user.id}">${user.name}</option>`;
 
@@ -453,8 +462,8 @@ include('layout/footer.html');
             name: $("#m_name").val(),
             start_regesteration: $("#m_time").val(),
             services: [$("#m_servive_name").val()],
-            repeats: 1,
-            user_id: $("#employees").val(),
+            repeats: $("repeat").val(),
+            user_id: $('#employees').val(),
         }
         var res = req.doRequest('queue/add', 'get', data);
         window.location.reload();

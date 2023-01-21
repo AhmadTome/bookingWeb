@@ -200,8 +200,8 @@ include('layout/footer.html');
                     times = times.split(',');
                     var data = {
                         source_id: id,
-                        start_time: times[0],
-                        end_time: times[1],
+                        start_time: times[0] + ":00:00",
+                        end_time: times[1] + ":00:00",
                         day: 6
                     }
                     req.doRequest('updateUserTime', 'get', data);
@@ -213,8 +213,8 @@ include('layout/footer.html');
                    times = times.split(',');
                    var data = {
                        source_id: id,
-                       start_time: times[0],
-                       end_time: times[1],
+                       start_time: times[0] + ":00:00",
+                       end_time: times[1] + ":00:00",
                        day: 0
                    }
                    req.doRequest('updateUserTime', 'get', data);
@@ -226,8 +226,8 @@ include('layout/footer.html');
                    times = times.split(',');
                    var data = {
                        source_id: id,
-                       start_time: times[0],
-                       end_time: times[1],
+                       start_time: times[0] + ":00:00",
+                       end_time: times[1] + ":00:00",
                        day: 1
                    }
                    req.doRequest('updateUserTime', 'get', data);
@@ -238,8 +238,8 @@ include('layout/footer.html');
                    times = times.split(',');
                    var data = {
                        source_id: id,
-                       start_time: times[0],
-                       end_time: times[1],
+                       start_time: times[0] + ":00:00",
+                       end_time: times[1] + ":00:00",
                        day: 2
                    }
                    req.doRequest('updateUserTime', 'get', data);
@@ -250,8 +250,8 @@ include('layout/footer.html');
                    times = times.split(',');
                    var data = {
                        source_id: id,
-                       start_time: times[0],
-                       end_time: times[1],
+                       start_time: times[0] + ":00:00",
+                       end_time: times[1] + ":00:00",
                        day: 3
                    }
                    req.doRequest('updateUserTime', 'get', data);
@@ -262,8 +262,8 @@ include('layout/footer.html');
                    times = times.split(',');
                    var data = {
                        source_id: id,
-                       start_time: times[0],
-                       end_time: times[1],
+                       start_time: times[0] + ":00:00",
+                       end_time: times[1] + ":00:00",
                        day: 4
                    }
                    req.doRequest('updateUserTime', 'get', data);
@@ -275,8 +275,8 @@ include('layout/footer.html');
                    times = times.split(',');
                    var data = {
                        source_id: id,
-                       start_time: times[0],
-                       end_time: times[1],
+                       start_time: times[0] + ":00:00",
+                       end_time: times[1] + ":00:00",
                        day: 5
                    }
                    req.doRequest('updateUserTime', 'get', data);
