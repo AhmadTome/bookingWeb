@@ -244,7 +244,6 @@
 
 
         var res = req.doRequest('register', 'get', data);
-        debugger;
         if (res.token) {
           localStorage.setItem('token', res.token);
           localStorage.setItem('company_id', res.user.company_id)
